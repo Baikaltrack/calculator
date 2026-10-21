@@ -12,6 +12,10 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        body {
+            -webkit-text-size-adjust: 100%;
+        }
+
         .calculator-wrapper {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             padding: 80px 20px;
@@ -30,6 +34,7 @@
             align-items: start;
         }
 
+        /* ===== Информационная колонка ===== */
         .info-section {
             color: white;
             padding: 40px 0;
@@ -54,6 +59,7 @@
             background: linear-gradient(135deg, #fff 0%, #e6f0ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .info-content {
@@ -91,8 +97,10 @@
             color: white;
             font-weight: bold;
             font-size: 12px;
+            flex-shrink: 0;
         }
 
+        /* ===== Карточка калькулятора ===== */
         .calculator-card {
             background: white;
             border-radius: 24px;
@@ -182,6 +190,7 @@
             box-shadow: 0 10px 25px rgba(33, 150, 243, 0.3);
         }
 
+        /* ===== Блок результатов ===== */
         .results-section {
             background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
             padding: 40px;
@@ -235,120 +244,177 @@
             opacity: 0.9;
         }
 
-        .order-section {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
+        /* ===== Блок контактов (замена формы) ===== */
+        .contacts-section {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 25px 20px;
             border-radius: 16px;
             margin-top: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        .order-form {
+        .contacts-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            opacity: 0.95;
+        }
+
+        .contacts-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr auto;
-            gap: 15px;
-            align-items: end;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
         }
 
-        .order-input {
-            padding: 15px 20px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-            font-size: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .order-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .order-input:focus {
-            outline: none;
-            border-color: #4fc3f7;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .order-btn {
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 18px;
             background: #4fc3f7;
             color: #0d47a1;
-            border: none;
-            padding: 15px 30px;
             border-radius: 12px;
-            font-size: 15px;
+            text-decoration: none;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
+            font-size: 15px;
+            transition: all 0.25s ease;
+            text-align: center;
         }
 
-        .order-btn:hover {
+        .contact-link:hover {
             background: #29b6f6;
             transform: translateY(-2px);
         }
 
-        .privacy-note {
-            font-size: 11px;
-            opacity: 0.7;
-            text-align: center;
-            margin-top: 15px;
-            line-height: 1.4;
+        .contact-link.secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .div-select {
-            display: none;
+        .contact-link.secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
         }
 
-        #x4 {
-            display: block;
+        .contact-icon {
+            font-size: 18px;
+            flex-shrink: 0;
         }
 
-        .div-a {
-            display: block;
-        }
+        /* Утилиты отображения полей */
+        .div-select { display: none; }
+        #x4 { display: block; }
+        .div-a { display: block; }
+        .div-s { display: none; }
 
-        .div-s {
-            display: none;
-        }
-
+        /* ===== Планшеты ===== */
         @media (max-width: 1024px) {
             .calculator-container {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-            
-            .input-grid {
-                grid-template-columns: 1fr;
+            .input-grid { grid-template-columns: 1fr; }
+            .results-grid { grid-template-columns: 1fr 1fr; }
+            .features-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* ===== Смартфоны ===== */
+        @media (max-width: 640px) {
+            .calculator-wrapper {
+                padding: 16px 10px 30px;
+                min-height: auto;
+                align-items: flex-start;
             }
-            
-            .results-grid {
+
+            .calculator-container {
                 grid-template-columns: 1fr;
+                gap: 18px;
             }
-            
-            .order-form {
-                grid-template-columns: 1fr;
+
+            /* Калькулятор — первым, маркетинг — ниже */
+            .calculator-card { order: 1; }
+            .info-section { order: 2; padding: 10px 0 20px; }
+
+            .info-header {
+                font-size: 24px;
+                line-height: 1.25;
+                margin-bottom: 12px;
             }
-            
+            .info-content { font-size: 14px; margin-bottom: 16px; }
+            .info-badge { font-size: 12px; padding: 6px 14px; margin-bottom: 12px; }
+
             .features-grid {
                 grid-template-columns: 1fr;
+                gap: 10px;
+                margin-top: 16px;
             }
+            .feature-item { padding: 12px; font-size: 14px; }
+
+            .calculator-header { padding: 20px 18px; }
+            .calculator-title { font-size: 20px; }
+            .calculator-subtitle { font-size: 13px; }
+
+            .calculator-body { padding: 16px; }
+            .input-grid { gap: 12px; margin-bottom: 14px; }
+            .form-group { margin-bottom: 10px; }
+            .form-label { font-size: 13px; margin-bottom: 6px; }
+            .form-hint { font-size: 11px; }
+
+            /* 16px — чтобы iOS не зумил при фокусе */
+            .form-select, .form-input {
+                padding: 13px 14px;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+
+            .calculate-btn {
+                padding: 16px 20px;
+                font-size: 16px;
+                margin-top: 6px;
+            }
+
+            .results-section { padding: 20px 14px; }
+            .results-title { font-size: 16px; margin-bottom: 16px; }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-bottom: 16px;
+            }
+            .result-card { padding: 14px; border-radius: 12px; }
+            .result-value { font-size: 24px; margin-bottom: 4px; }
+            .result-label { font-size: 12px; }
+
+            .call-to-action {
+                font-size: 14px;
+                padding: 14px;
+                margin-bottom: 16px;
+            }
+
+            .contacts-section { padding: 18px 14px; margin-top: 16px; }
+            .contacts-title { font-size: 14px; margin-bottom: 14px; }
+            .contacts-grid { grid-template-columns: 1fr; gap: 10px; }
+            .contact-link { padding: 14px; font-size: 15px; }
         }
     </style>
 </head>
 <body>
     <section class="calculator-wrapper">
         <div class="calculator-container">
-            <!-- Левая колонка с информацией -->
+
+            <!-- Левая колонка с информацией (на мобиле уходит вниз) -->
             <div class="info-section">
                 <div class="info-badge">🚀 Калькулятор эффективности</div>
                 <h1 class="info-header">
                     Узнайте сколько сможете сэкономить с системой мониторинга транспорта
                 </h1>
                 <p class="info-content">
-                    Средний срок окупаемости системы составляет 3-4 месяца. 
+                    Средний срок окупаемости системы составляет 3-4 месяца.
                     Рассчитайте точную сумму экономии для вашего автопарка.
                 </p>
-                
+
                 <div class="features-grid">
                     <div class="feature-item">
                         <div class="feature-icon">✓</div>
@@ -369,18 +435,16 @@
                 </div>
             </div>
 
-            <!-- Правая колонка с калькулятором -->
+            <!-- Правая колонка с калькулятором (на мобиле — первая) -->
             <div class="calculator-card">
-                <!-- Шапка калькулятора -->
                 <div class="calculator-header">
                     <h2 class="calculator-title">Рассчитайте вашу экономию</h2>
                     <p class="calculator-subtitle">Заполните параметры вашего автопарка</p>
                 </div>
 
-                <!-- Тело калькулятора -->
                 <div class="calculator-body">
                     <div class="input-grid">
-                        <!-- Основная категория -->
+                        <!-- Категория транспорта -->
                         <div class="form-group">
                             <label class="form-label">Тип транспорта</label>
                             <select class="form-select" id="mainch">
@@ -520,31 +584,31 @@
                             </select>
                         </div>
 
-                        <!-- Количество техники -->
+                        <!-- Количество -->
                         <div class="form-group">
                             <label class="form-label">Количество единиц</label>
                             <div class="form-hint">Общее количество техники</div>
-                            <input class="form-input" id="kolvo" type="number" value="1" min="1" max="1000">
+                            <input class="form-input" id="kolvo" type="number" inputmode="numeric" value="1" min="1" max="1000">
                         </div>
 
-                        <!-- Пробег/Моточасы -->
+                        <!-- Пробег / моточасы -->
                         <div class="form-group div-a">
                             <label class="form-label">Пробег в месяц</label>
                             <div class="form-hint">Для автотранспорта (км)</div>
-                            <input class="form-input" id="probeg" type="number" value="3000" min="0">
+                            <input class="form-input" id="probeg" type="number" inputmode="numeric" value="3000" min="0">
                         </div>
 
                         <div class="form-group div-s">
                             <label class="form-label">Наработка в месяц</label>
                             <div class="form-hint">Для спецтехники (моточасов)</div>
-                            <input class="form-input" id="motoch" type="number" value="160" min="0">
+                            <input class="form-input" id="motoch" type="number" inputmode="numeric" value="160" min="0">
                         </div>
 
                         <!-- Стоимость топлива -->
                         <div class="form-group">
                             <label class="form-label">Стоимость топлива</label>
                             <div class="form-hint">Цена за 1 литр (руб.)</div>
-                            <input class="form-input" id="edtoplivo" type="number" value="55" min="1">
+                            <input class="form-input" id="edtoplivo" type="number" inputmode="numeric" value="55" min="1">
                         </div>
                     </div>
 
@@ -553,10 +617,10 @@
                     </button>
                 </div>
 
-                <!-- Результаты расчета -->
-                <div class="results-section">
+                <!-- Результаты -->
+                <div class="results-section" id="resultsSection">
                     <h3 class="results-title">Ваша потенциальная экономия</h3>
-                    
+
                     <div class="results-grid">
                         <div class="result-card">
                             <div class="result-value" id="okup">10</div>
@@ -572,25 +636,24 @@
                         </div>
                     </div>
 
-                    <!-- Форма заказа -->
-                    <div class="order-section">
-                        <!-- Перемещенный блок с призывом к действию -->
-                        <div class="call-to-action">
-                            Хватит нести финансовые потери!<br>
-                            Закажите установку системы ГЛОНАСС мониторинга<br>
-                            и начните экономить уже <strong>сегодня</strong>!
-                        </div>
-                        
-                        <div class="order-form">
-                            <input class="order-input" type="text" placeholder="Ваше имя" name="name" id="clientName">
-                            <input class="order-input" type="tel" placeholder="Телефон" name="phone" id="clientPhone">
-                            <button class="order-btn" id="orderBtn">
-                                Оставить заявку
-                            </button>
-                        </div>
-                        <div class="privacy-note">
-                            Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности 
-                            и даете согласие на обработку персональных данных
+                    <div class="call-to-action">
+                        Хватит нести финансовые потери!<br>
+                        Закажите установку системы ГЛОНАСС мониторинга<br>
+                        и начните экономить уже <strong>сегодня</strong>!
+                    </div>
+
+                    <!-- Контакты вместо формы -->
+                    <div class="contacts-section">
+                        <div class="contacts-title">Свяжитесь с нами</div>
+                        <div class="contacts-grid">
+                            <a class="contact-link" href="tel:+73012515551">
+                                <span class="contact-icon">📞</span>
+                                <span>8 301 25 15 551</span>
+                            </a>
+                            <a class="contact-link secondary" href="https://gpsrb.ru" target="_blank" rel="noopener">
+                                <span class="contact-icon">🌐</span>
+                                <span>gpsrb.ru</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -599,26 +662,22 @@
     </section>
 
     <script>
-        // Функция для показа подкатегорий
+        // Показ подкатегорий
         function showSubCategory() {
             const mainSelect = document.getElementById('mainch');
             const selectedValue = mainSelect.value;
-            
-            // Скрыть все подкатегории
+
             document.querySelectorAll('.div-select').forEach(el => {
                 el.style.display = 'none';
             });
-            
-            // Показать выбранную подкатегорию
+
             if (selectedValue) {
                 const subCategory = document.getElementById(selectedValue);
                 if (subCategory) {
                     subCategory.style.display = 'block';
-                    
-                    // Автоматически выбираем первый доступный вариант в подкатегории
+
                     const subSelect = subCategory.querySelector('select');
                     if (subSelect) {
-                        // Ищем первый не-disabled option
                         for (let i = 0; i < subSelect.options.length; i++) {
                             if (!subSelect.options[i].disabled) {
                                 subSelect.selectedIndex = i;
@@ -628,27 +687,25 @@
                     }
                 }
             }
-            
-            // Определяем тип техники для отображения правильных полей
+
             updateInputFields();
             calculateEfficiency();
         }
 
-        // Функция для определения типа техники и обновления полей ввода
+        // Определение типа техники (a / s) и переключение полей
         function updateInputFields() {
             let tip = '';
-            
-            // Сначала проверяем активную подкатегорию
+
             const activeSubCategories = document.querySelectorAll('.div-select');
             let activeSubCategory = null;
-            
+
             for (let category of activeSubCategories) {
                 if (category.style.display === 'block') {
                     activeSubCategory = category;
                     break;
                 }
             }
-            
+
             if (activeSubCategory) {
                 const subSelect = activeSubCategory.querySelector('select');
                 if (subSelect && subSelect.value !== 'y0') {
@@ -656,17 +713,13 @@
                     tip = selectedSubOption.getAttribute('data-tip') || '';
                 }
             }
-            
-            // Если в подкатегории не определили тип, проверяем основной селект
+
             if (!tip) {
                 const mainSelect = document.getElementById('mainch');
                 const selectedMainOption = mainSelect.options[mainSelect.selectedIndex];
                 tip = selectedMainOption.getAttribute('data-tip') || 'a';
             }
-            
-            console.log('Detected tip:', tip); // Для отладки
-            
-            // Показываем/скрываем соответствующие поля
+
             if (tip === 'a') {
                 document.querySelector('.div-a').style.display = 'block';
                 document.querySelector('.div-s').style.display = 'none';
@@ -676,144 +729,18 @@
             }
         }
 
-        // Функция расчета эффективности
+        // Расчёт эффективности
         function calculateEfficiency() {
-            // Получаем значения из формы
             const kolvo = parseInt(document.getElementById('kolvo').value) || 1;
             const probeg = parseInt(document.getElementById('probeg').value) || 0;
             const motoch = parseInt(document.getElementById('motoch').value) || 0;
             const fuelPrice = parseInt(document.getElementById('edtoplivo').value) || 55;
-            
-            // Определяем тип техники
+
             let tip = '';
             const activeSubCategories = document.querySelectorAll('.div-select');
             let activeSubCategory = null;
-            
+
             for (let category of activeSubCategories) {
                 if (category.style.display === 'block') {
                     activeSubCategory = category;
-                    break;
-                }
-            }
-            
-            if (activeSubCategory) {
-                const subSelect = activeSubCategory.querySelector('select');
-                if (subSelect && subSelect.value !== 'y0') {
-                    const selectedSubOption = subSelect.options[subSelect.selectedIndex];
-                    tip = selectedSubOption.getAttribute('data-tip') || '';
-                }
-            }
-            
-            if (!tip) {
-                const mainSelect = document.getElementById('mainch');
-                const selectedMainOption = mainSelect.options[mainSelect.selectedIndex];
-                tip = selectedMainOption.getAttribute('data-tip') || 'a';
-            }
-            
-            console.log('Calculation tip:', tip); // Для отладки
-            
-            // Значения по умолчанию
-            let efficiencyRate = 0.1;
-            let equipmentCost = 30000;
-            let baseFuelConsumption = 30;
-            
-            // Получаем параметры из активной подкатегории
-            if (activeSubCategory) {
-                const subSelect = activeSubCategory.querySelector('select');
-                if (subSelect && subSelect.value !== 'y0') {
-                    const selectedSubOption = subSelect.options[subSelect.selectedIndex];
-                    efficiencyRate = parseFloat(selectedSubOption.getAttribute('data-p')) || 0.1;
-                    equipmentCost = parseInt(selectedSubOption.getAttribute('data-cost')) || 30000;
-                    baseFuelConsumption = parseInt(selectedSubOption.getAttribute('data-n')) || 30;
-                    
-                    console.log('Subcategory params:', { efficiencyRate, equipmentCost, baseFuelConsumption }); // Для отладки
-                }
-            }
-            
-            // Расчет экономии
-            let monthlySavings = 0;
-            
-            if (tip === 'a') {
-                // Для автотранспорта: (пробег / 100) * расход * цена * коэффициент * количество
-                monthlySavings = (probeg / 100) * baseFuelConsumption * fuelPrice * efficiencyRate * kolvo;
-                console.log('Auto calculation:', { probeg, baseFuelConsumption, fuelPrice, efficiencyRate, kolvo, monthlySavings });
-            } else {
-                // Для спецтехники: моточасы * расход * цена * коэффициент * количество
-                monthlySavings = motoch * baseFuelConsumption * fuelPrice * efficiencyRate * kolvo;
-                console.log('Special calculation:', { motoch, baseFuelConsumption, fuelPrice, efficiencyRate, kolvo, monthlySavings });
-            }
-            
-            // Округляем
-            monthlySavings = Math.round(monthlySavings);
-            const yearlySavings = monthlySavings * 12;
-            
-            // Расчет окупаемости
-            let paybackMonths = 0;
-            if (monthlySavings > 0) {
-                paybackMonths = Math.ceil(equipmentCost / monthlySavings);
-            }
-            
-            // Обновляем значения
-            document.getElementById('ekonom').textContent = monthlySavings.toLocaleString();
-            document.getElementById('ekonomgod').textContent = yearlySavings.toLocaleString();
-            document.getElementById('okup').textContent = paybackMonths;
-        }
-
-            // Функция отправки заявки
-            function submitForm() {
-                const name = document.getElementById('clientName').value.trim();
-                const phone = document.getElementById('clientPhone').value.trim();
-            
-                if (!name || !phone) {
-                    alert('Пожалуйста, заполните имя и телефон');
-                    return;
-                }
-            
-                // Показываем загрузку
-                const submitBtn = document.getElementById('orderBtn');
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = 'Отправляем...';
-                submitBtn.disabled = true;
-            
-                // Здесь необходимо добавить логику отправки письма на почту baikaltrack@mail.ru с текстом "У вас новый запрос от клиента [имя], свяжитесь с ним по телефону [телефон]"
-                // Пока просто показываем сообщение
-                setTimeout(() => {
-                    alert(`Спасибо, ${name}! Ваша заявка принята. Мы свяжемся с вами по номеру ${phone} в ближайшее время.`);
-                
-                    // Очищаем форму
-                    document.getElementById('clientName').value = '';
-                    document.getElementById('clientPhone').value = '';
-                
-                    // Восстанавливаем кнопку
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                }, 1000);
-            }
-
-            // Инициализация при загрузке
-            document.addEventListener('DOMContentLoaded', function() {
-                // Добавляем обработчики событий
-                document.getElementById('mainch').addEventListener('change', showSubCategory);
-                document.getElementById('calculateBtn').addEventListener('click', calculateEfficiency);
-                document.getElementById('orderBtn').addEventListener('click', submitForm);
-            
-                // Добавляем обработчики для всех select подкатегорий
-                document.querySelectorAll('.div-select select').forEach(select => {
-                    select.addEventListener('change', function() {
-                        updateInputFields();
-                        calculateEfficiency();
-                    });
-                });
-            
-                // Добавляем обработчики для input полей
-                document.getElementById('kolvo').addEventListener('input', calculateEfficiency);
-                document.getElementById('probeg').addEventListener('input', calculateEfficiency);
-                document.getElementById('motoch').addEventListener('input', calculateEfficiency);
-                document.getElementById('edtoplivo').addEventListener('input', calculateEfficiency);
-            
-                // Инициализируем начальное состояние
-                showSubCategory();
-            });
-    </script>
-</body>
-</html>
+                   
