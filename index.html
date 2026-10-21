@@ -330,25 +330,22 @@
 
             .calculator-container {
                 grid-template-columns: 1fr;
-                gap: 18px;
+                gap: 14px;
             }
 
             /* Калькулятор — первым, маркетинг — ниже */
-            .calculator-card { order: 1; }
-            .info-section { order: 2; padding: 10px 0 20px; }
+            .info-section { order: 1; padding: 4px 0 0; }
+			.calculator-card { order: 2; }
 
             .info-header {
                 font-size: 24px;
                 line-height: 1.25;
-                margin-bottom: 12px;
+                margin-bottom: 10px;
             }
-            .info-content { font-size: 14px; margin-bottom: 16px; }
+            .info-content { font-size: 14px; margin-bottom: 0px; }
             .info-badge { font-size: 12px; padding: 6px 14px; margin-bottom: 12px; }
 
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 10px;
-                margin-top: 16px;
+            .features-grid { display: none; }
             }
             .feature-item { padding: 12px; font-size: 14px; }
 
@@ -648,7 +645,7 @@
                         <div class="contacts-grid">
                             <a class="contact-link" href="tel:+73012515551">
                                 <span class="contact-icon">📞</span>
-                                <span>8 301 25 15 551</span>
+                                <span>8 3012 515551</span>
                             </a>
                             <a class="contact-link secondary" href="https://gpsrb.ru" target="_blank" rel="noopener">
                                 <span class="contact-icon">🌐</span>
@@ -743,4 +740,3 @@
             for (let category of activeSubCategories) {
                 if (category.style.display === 'block') {
                     activeSubCategory = category;
-                   
